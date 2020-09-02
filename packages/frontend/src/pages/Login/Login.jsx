@@ -9,9 +9,10 @@ import TextField from "@material-ui/core/TextField";
 import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import ForumIcon from "@material-ui/icons/Forum";
+
 import { SERVER_URL } from "../../constants";
 import AuthUtils from "../../utils/AuthUtils";
 
@@ -97,7 +98,7 @@ function Login() {
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
+            <ForumIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in

@@ -1,6 +1,7 @@
 import { Server } from "http";
 import * as SocketIo from "socket.io";
 import * as SocketioJwt from "socketio-jwt";
+import * as moment from "moment";
 
 import { EVENTS, USER_STATUS } from "../enums";
 import { SocketJwt } from "../interfaces";
@@ -79,7 +80,7 @@ export default (server: Server) => {
       const message = {
         from: user,
         text: msg,
-        dateTime: new Date().toLocaleString(),
+        dateTime: moment().format(),
       };
 
       await MessageRepository.create(message);

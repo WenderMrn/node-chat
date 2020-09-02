@@ -14,7 +14,7 @@ import UserList from "./UsersList";
 import Message from "./Message";
 import AuthUtils from "../../utils/AuthUtils";
 import Template from "../Template";
-import Socket from "../../socket";
+import SocketChat from "./../../services/SocketChat";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -66,7 +66,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Chat() {
-  const [socket] = useState(Socket());
   const classes = useStyles();
   const history = useHistory();
   const [users, setUsers] = useState([]);
@@ -74,6 +73,8 @@ function Chat() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
+    SocketChat.initialize();
+
     const goToLogin = () => {
       AuthUtils.clearToken();
       history.push("/login");
@@ -82,12 +83,11 @@ function Chat() {
     if (!AuthUtils.getToken()) {
       goToLogin();
     } else {
-      socket
+      SocketChat.getSocket()
         .on("connect", () => {
-          socket.emit("new_user_access");
+          SocketChat.getSocket().emit("new_user_access");
         })
         .on("error", (data) => {
-          console.log("error: ", data);
           if ("UnauthorizedError" === data.type) {
             alert("Suas credenciais estão inválidas!");
             goToLogin();
@@ -113,20 +113,20 @@ function Chat() {
     }
 
     return () => {
-      socket.disconnect();
+      SocketChat.getSocket().disconnect();
     };
-  }, []);
+  }, [history]);
 
   const sendMessage = () => {
     if (message) {
-      socket.emit("send_message", message);
+      SocketChat.getSocket().emit("send_message", message);
       setMessage("");
     }
   };
 
   const handleMessage = (message) => {
     setMessage(message);
-    //socket.emit("typing_message", message);
+    //SocketChat.getSocket().emit("typing_message", message);
   };
 
   const scrollToLastMessages = () => {
@@ -169,7 +169,7 @@ function Chat() {
                     key={index}
                     from={m.from}
                     text={m.text}
-                    //dateTime={m.dateTime}
+                    dateTime={m.dateTime}
                   />
                 ))}
               </Box>

@@ -2,9 +2,13 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap"
+    "bootstrap": "lerna bootstrap",
+    "start:front": "lerna run --scope frontend start",
+    "start:back": "lerna run --scope backend start",
+    "start": "lerna run start"
   },
   "devDependencies": {
+    "@lerna/run": "^3.21.0",
     "lerna": "^3.22.1"
   }
 }

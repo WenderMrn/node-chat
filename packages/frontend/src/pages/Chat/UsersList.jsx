@@ -41,39 +41,51 @@ function UserList({ users }) {
 
   return (
     <List className={classes.root}>
-      {users.map((user, index) => (
-        <React.Fragment key={index}>
-          <ListItem alignItems="flex-start">
-            <ListItemAvatar>
-              <Badge
-                color={user.status === "on" ? "primary" : "error"}
-                overlap="circle"
-                badgeContent=" "
-                variant="dot"
-              >
-                <Avatar>{StringUtils.getInitialsText(user.name)}</Avatar>
-              </Badge>
-            </ListItemAvatar>
-            <ListItemText
-              primary={user.name}
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    component="span"
-                    variant="body2"
-                    className={classes.inline}
-                    color="textPrimary"
-                  >
-                    {user.email}
-                  </Typography>
-                  {/*" — I'll be in your neighborhood doing errands this…"*/}
-                </React.Fragment>
-              }
-            />
-          </ListItem>
-          <Divider component="li" />
-        </React.Fragment>
-      ))}
+      {users.length > 0 ? (
+        users.map((user, index) => (
+          <React.Fragment key={index}>
+            <ListItem alignItems="flex-start">
+              <ListItemAvatar>
+                <Badge
+                  color={user.status === "on" ? "primary" : "error"}
+                  overlap="circle"
+                  badgeContent=" "
+                  variant="dot"
+                >
+                  <Avatar>{StringUtils.getInitialsText(user.name)}</Avatar>
+                </Badge>
+              </ListItemAvatar>
+              <ListItemText
+                primary={user.name}
+                secondary={
+                  <React.Fragment>
+                    <Typography
+                      component="span"
+                      variant="body2"
+                      className={classes.inline}
+                      color="textPrimary"
+                    >
+                      {user.email}
+                    </Typography>
+                    {/*" — I'll be in your neighborhood doing errands this…"*/}
+                  </React.Fragment>
+                }
+              />
+            </ListItem>
+            <Divider component="li" />
+          </React.Fragment>
+        ))
+      ) : (
+        <Typography
+          component="span"
+          variant="body2"
+          className={classes.inline}
+          color="textPrimary"
+          align="center"
+        >
+          Nenhum usuário disponível
+        </Typography>
+      )}
     </List>
   );
 }

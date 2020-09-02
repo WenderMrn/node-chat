@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import moment from "moment";
 
 import Box from "@material-ui/core/Box";
 import grey from "@material-ui/core/colors/grey";
 import Avatar from "@material-ui/core/Avatar";
+import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import AuthUtils from "../../utils/AuthUtils";
 import StringUtils from "../../utils/StringUtils";
@@ -64,11 +66,33 @@ function Message({ text, from, dateTime }) {
     treze: 23,
   });
 
+  const getDateTime = () => {
+    if (dateTime) {
+      const date = moment(dateTime);
+      const start = moment().set({
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0,
+      });
+      const end = moment().set({
+        hours: 23,
+        minutes: 59,
+        seconds: 59,
+        milliseconds: 9999,
+      });
+
+      return date.format(
+        `${!date.isBetween(start, end) ? "DD/MM/YYYY" : ""} HH:mm:ss`
+      );
+    }
+    return "";
+  };
+
   return (
     <Box
       display="flex"
       flexDirection="column"
-      width="fit-content"
       alignSelf={`flex-${myself ? "end" : "start"}`}
       width="100%"
       pt={2}
@@ -90,7 +114,13 @@ function Message({ text, from, dateTime }) {
           {text}
         </Box>
       </Box>
-      {dateTime && <Box alignSelf="flex-end">{dateTime}</Box>}
+      {dateTime && (
+        <Box alignSelf={`flex-${myself ? "end" : "start"}`}>
+          <Typography variant="caption" color="textSecondary">
+            {getDateTime()}
+          </Typography>
+        </Box>
+      )}
     </Box>
   );
 }

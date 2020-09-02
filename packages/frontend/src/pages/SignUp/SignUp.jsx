@@ -8,9 +8,9 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
+import ForumIcon from "@material-ui/icons/Forum";
 import { makeStyles } from "@material-ui/core/styles";
 import { SERVER_URL } from "../../constants";
 import AuthUtils from "../../utils/AuthUtils";
@@ -86,7 +86,7 @@ export default function SignUp() {
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <ForumIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign up
