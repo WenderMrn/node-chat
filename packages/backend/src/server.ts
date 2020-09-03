@@ -1,12 +1,10 @@
 import * as http from "http";
 import * as express from "express";
 import * as cors from "cors";
-import * as cookieParser from "cookie-parser";
 import * as bodyParser from "body-parser";
 
-import UserRepository from "./repositories/UserRepository";
 import AuthController from "./controllers/AuthController";
-import ChatSocket from "./sockets/ChatSocket";
+import ChatSocket from "./ChatSocket";
 
 const port = process.env.PORT || 4001;
 
@@ -20,44 +18,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // registro de novo usuário
-app.post("/signup", async (req, res) => {
-  const { email, password, name } = req.body;
-
-  if (!email || !password) {
-    return res.status(400).json({ name: "NoNameOrPassword!" });
-  }
-
-  const user = await UserRepository.create({ email, password, name });
-
-  return res.status(201).json({
-    token: AuthController.generateToken({
-      id: user.id,
-      email: user.email,
-      name: user.name,
-    }),
-  }); // retornar o token JWT para o cliente
-});
+app.post("/signup", AuthController.signUp);
 
 // login de um usuário
-app.post("/login", async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const user = await UserRepository.findOneByEmail(email);
-
-    if (user && user.password === password) {
-      return res.status(200).json({
-        token: AuthController.generateToken({
-          id: user.id,
-          email: user.email,
-          name: user.name,
-        }),
-      }); // retornar o token JWT para o cliente
-    }
-    return res.status(403).json({ name: "UserOrPasswordIsWrong" });
-  } catch (e) {
-    console.log("error: ", e);
-    return res.status(403).json({ name: "UserOrPasswordIsWrong" });
-  }
-});
+app.post("/login", AuthController.login);
 
 ChatSocket(server);

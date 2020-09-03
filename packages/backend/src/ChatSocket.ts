@@ -1,20 +1,22 @@
 import { Server } from "http";
 import * as SocketIo from "socket.io";
 import * as SocketioJwt from "socketio-jwt";
+import * as dotenv from "dotenv";
 import * as moment from "moment";
 
-import { EVENTS, USER_STATUS } from "../enums";
-import { SocketJwt } from "../interfaces";
-import UserRepository from "../repositories/UserRepository";
-import MessageRepository from "../repositories/MessageRepository";
-import { SECRET } from "../constants";
+import { EVENTS, USER_STATUS } from "./enums";
+import { SocketJwt } from "./interfaces";
+import UserRepository from "./repositories/UserRepository";
+import MessageRepository from "./repositories/MessageRepository";
+
+const { JWT_SECRET } = dotenv.config().parsed || {};
 
 export default (server: Server) => {
   const io = SocketIo.listen(server);
 
   io.use(
     SocketioJwt.authorize({
-      secret: SECRET,
+      secret: JWT_SECRET,
       handshake: true,
       callback: 15000,
     })
