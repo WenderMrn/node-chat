@@ -7,6 +7,8 @@ NodeChat is a simple Node + React application.
 
 ![chat dialog](https://github.com/WenderMrn/node-chat/blob/master/packages/frontend/src/assets/images/chat-dialog.gif)
 
+![chat print](https://github.com/WenderMrn/node-chat/blob/master/packages/frontend/src/assets/images/chat-print.png)
+
 ## Backend
 
  - [Node - v12.16.1](https://nodejs.org/en/)
