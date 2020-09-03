@@ -24,9 +24,20 @@ NodeChat is a simple Node + React application.
  |   POST    |  /login    |   {email: string, password: string}                   |  {token: string}   |
  |   POST    |  /signup   |   { name: string, email: string, password: string}    |  {token: string}   |          
  
+ ### Socket IO events
+ 
+ - **new_user_access**: client emit when new user access aplication
+ - **send_message**: cliente send when to send a message
+ - **user_came_in**: server emit when receive a new_user_access event
+ - **new_messages**: server emit when receive a send_message event
 
 ## Frontend
 
+- React - 16.13.1
+- Material ui - 4.11.0
+- socket.io-client - 2.3.0
+- jsonwebtoken - 8.5.1
+- axios - 0.20.0
 
 ## Usage
 
