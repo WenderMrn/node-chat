@@ -2,7 +2,7 @@ import BaseRepository from "./BaseRepository";
 import { Message } from "../interfaces";
 
 class MessageRepository extends BaseRepository<Message> {
-  messages: Message[]; // simulate database
+  messages: Message[]; // simulate a database
 
   constructor() {
     super();

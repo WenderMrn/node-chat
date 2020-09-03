@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -67,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Chat() {
   const classes = useStyles();
+  const { enqueueSnackbar } = useSnackbar();
   const history = useHistory();
   const [users, setUsers] = useState([]);
   const [messages, setMessages] = useState([]);
@@ -89,7 +91,9 @@ function Chat() {
         })
         .on("error", (data) => {
           if ("UnauthorizedError" === data.type) {
-            alert("Suas credenciais estão inválidas!");
+            enqueueSnackbar("Your credentials are invalid!", {
+              variant: "error",
+            });
             goToLogin();
           }
         })

@@ -104,7 +104,12 @@ function Login() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate onSubmit={SingIn}>
+          <form
+            className={classes.form}
+            noValidate
+            autoComplete="off"
+            onSubmit={SingIn}
+          >
             <TextField
               variant="outlined"
               margin="normal"
@@ -112,7 +117,7 @@ function Login() {
               fullWidth
               label="Login"
               name="email"
-              autoComplete="email"
+              autoComplete="off"
               autoFocus
               defaultValue={params.name}
               onBlur={(e) => handleParams(e.target.name, e.target.value)}
@@ -126,7 +131,7 @@ function Login() {
               label="Password"
               type="password"
               id="password"
-              autoComplete="current-password"
+              autoComplete="off"
               defaultValue={params.password}
               onBlur={(e) => handleParams(e.target.name, e.target.value)}
             />

@@ -5,26 +5,26 @@ import { User } from "../interfaces";
 import { USER_STATUS } from "../enums";
 
 class UserRepository extends BaseRepository<User> {
-  activeUsers: User[]; // simulate database
+  users: User[]; // simulate a database
 
   constructor() {
     super();
-    this.activeUsers = [
+    this.users = [
       {
         id: nanoid(),
-        name: "Marcos Silva",
-        email: "marcos@gmail.com",
+        name: "Mark Parker",
+        email: "mark@gmail.com",
         status: USER_STATUS.OFF,
         typing: false,
-        password: "123",
+        password: "123456",
       },
       {
         id: nanoid(),
-        name: "Ana Marcela",
-        email: "anamah@gmail.com",
+        name: "Anne Snow",
+        email: "anne@gmail.com",
         status: USER_STATUS.OFF,
         typing: false,
-        password: "123",
+        password: "123456",
       },
     ];
   }
@@ -39,7 +39,7 @@ class UserRepository extends BaseRepository<User> {
       password: param.password || "",
     };
 
-    this.activeUsers.push(user);
+    this.users.push(user);
     return Promise.resolve(user);
   }
 
@@ -48,8 +48,8 @@ class UserRepository extends BaseRepository<User> {
       let u = await this.findOne(id);
       if (user) {
         u = { ...u, ...user };
-        const userIndex = this.activeUsers.findIndex((u) => u.id === id);
-        this.activeUsers.splice(userIndex, 1, u);
+        const userIndex = this.users.findIndex((u) => u.id === id);
+        this.users.splice(userIndex, 1, u);
         return Promise.resolve(u);
       }
     } catch (e) {}
@@ -57,24 +57,24 @@ class UserRepository extends BaseRepository<User> {
   }
 
   all() {
-    return Promise.resolve(this.activeUsers);
+    return Promise.resolve(this.users);
   }
 
   findOne(id: string) {
-    const user = this.activeUsers.find((u) => u.id === id);
+    const user = this.users.find((u) => u.id === id);
     if (user) return Promise.resolve(user);
     return Promise.reject();
   }
 
   findOneByEmail(email: string) {
-    const user = this.activeUsers.find((u) => u.email === email);
+    const user = this.users.find((u) => u.email === email);
     if (user) return Promise.resolve(user);
     return Promise.reject();
   }
 
   delete(id: string) {
     if (!id) return Promise.reject(false);
-    this.activeUsers = this.activeUsers.filter((u) => u.id !== id);
+    this.users = this.users.filter((u) => u.id !== id);
     return Promise.resolve(true);
   }
 }
