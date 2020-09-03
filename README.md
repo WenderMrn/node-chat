@@ -22,7 +22,7 @@ NodeChat is a simple Node + React application.
  |  Method   |  Resource  |  Payload                                              | Response           |
  |-----------|------------|-------------------------------------------------------|--------------------|
  |   POST    |  /login    |   {email: string, password: string}                   |  {token: string}   |
- |   POST    | /signup    |   { name: string, email: string, password: string}    |  {token: string}   |          
+ |   POST    |  /signup   |   { name: string, email: string, password: string}    |  {token: string}   |          
  
 
 ## Frontend
@@ -42,7 +42,7 @@ git clone https://github.com/WenderMrn/node-chat.git
 npm i && npx lerna bootstrap && npm start
 ```
 
-The last command will start our backend **Node** on [http://locahost:4001](http://locahost:4001) and **React** aplication on [http://localhost:3000](http://localhost:4001). You can navegate to **/packages/frontend** and start React application from there and navegate to **/packages/backend** and start backend form there too. 
+The last command will start our backend **Node** on [http://locahost:4001](http://locahost:4001) and **React** aplication on [http://localhost:3000](http://localhost:3000). You can navegate to **/packages/frontend** and start React application from there and navegate to **/packages/backend** and start backend form there too. 
 
 
 
