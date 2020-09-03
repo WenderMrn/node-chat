@@ -9,6 +9,7 @@ import {
 import CssBaseline from "@material-ui/core/CssBaseline";
 import green from "@material-ui/core/colors/green";
 import orange from "@material-ui/core/colors/orange";
+import { SnackbarProvider } from "notistack";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 import Login from "./pages/Login";
@@ -30,23 +31,33 @@ const theme = createMuiTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Router>
-        <Switch>
-          <Route path="/login" exact>
-            <Login />
-          </Route>
-          <Route path="/signup" exact>
-            <SignUp />
-          </Route>
-          <Route path="/" exact>
-            <Chat />
-          </Route>
-          <Route path="*">
-            <Redirect to="/" />
-          </Route>
-        </Switch>
-      </Router>
+      <SnackbarProvider
+        preventDuplicate
+        maxSnack={3}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        autoHideDuration={3000}
+      >
+        <CssBaseline />
+        <Router>
+          <Switch>
+            <Route path="/login" exact>
+              <Login />
+            </Route>
+            <Route path="/signup" exact>
+              <SignUp />
+            </Route>
+            <Route path="/" exact>
+              <Chat />
+            </Route>
+            <Route path="*">
+              <Redirect to="/" />
+            </Route>
+          </Switch>
+        </Router>
+      </SnackbarProvider>
     </ThemeProvider>
   );
 }

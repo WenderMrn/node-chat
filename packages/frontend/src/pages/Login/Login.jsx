@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -53,6 +54,7 @@ function Login() {
   const classes = useStyles();
   const history = useHistory();
   const [params, setParams] = useState({ email: "", password: "" });
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     if (AuthUtils.getToken()) {
@@ -82,9 +84,8 @@ function Login() {
         AuthUtils.setToken(token);
         history.replace("/");
       })
-      .catch((error) => {
-        console.log(error);
-        alert(error);
+      .catch(() => {
+        enqueueSnackbar("Incorrect username or password", { variant: "error" });
       })
       .finally(() => {
         // close loading

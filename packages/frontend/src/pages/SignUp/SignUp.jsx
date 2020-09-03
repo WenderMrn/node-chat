@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -37,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const { enqueueSnackbar } = useSnackbar();
   const history = useHistory();
   const [params, setParams] = useState({
     name: "",
@@ -72,9 +74,8 @@ export default function SignUp() {
         AuthUtils.setToken(token);
         history.push("/");
       })
-      .catch((error) => {
-        console.log(error);
-        alert(error);
+      .catch(() => {
+        enqueueSnackbar("Error", { variant: "error" });
       })
       .finally(() => {
         // close loading
