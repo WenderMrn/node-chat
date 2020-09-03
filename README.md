@@ -15,7 +15,7 @@ NodeChat is a simple Node + React application.
  - socketio-jwt - 4.6.2
  - jsonwebtoken - 8.5.1
  
- ### Api resources
+ ### Api
  
  - host: [http://localhost:4001](http://localhost:4001)
  
@@ -24,7 +24,7 @@ NodeChat is a simple Node + React application.
  |   POST    |  /login    |   {email: string, password: string}                   |  {token: string}   |
  |   POST    |  /signup   |   { name: string, email: string, password: string}    |  {token: string}   |          
  
- ### Socket IO events
+ ### Socket IO
  
  - **new_user_access**: client emit when new user access aplication
  - **send_message**: cliente send when to send a message
