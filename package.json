@@ -5,7 +5,7 @@
     "bootstrap": "lerna bootstrap",
     "start:front": "lerna run --scope frontend start",
     "start:back": "lerna run --scope backend start",
-    "start": "lerna run --parallel start"
+    "start": "lerna run start"
   },
   "devDependencies": {
     "@lerna/run": "^3.21.0",

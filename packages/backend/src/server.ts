@@ -11,8 +11,6 @@ const port = process.env.PORT || 4001;
 const app = express();
 const server = new http.Server(app);
 
-server.listen(port, () => console.log(`Listening on port ${port}`));
-
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -24,3 +22,5 @@ app.post("/signup", AuthController.signUp);
 app.post("/login", AuthController.login);
 
 ChatSocket(server);
+
+server.listen(port, () => console.log(`Listening on port ${port}`));
