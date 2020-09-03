@@ -9,11 +9,11 @@ NodeChat is a simple Node + React application.
 
 ## Backend
 
- - Node - v12.16.1
- - Typescript - 4.0.2
- - socket.io - 2.1.11
- - socketio-jwt - 4.6.2
- - jsonwebtoken - 8.5.1
+ - [Node - v12.16.1](https://nodejs.org/en/)
+ - [Typescript - v4.0.2](https://www.typescriptlang.org/)
+ - [socket.io - v2.1.11](https://socket.io/)
+ - [socketio-jwt - v4.6.2](https://www.npmjs.com/package/socketio-jwt)
+ - [jsonwebtoken - v8.5.1](https://www.npmjs.com/package/jsonwebtoken)
  
  ### Api
  
@@ -33,11 +33,11 @@ NodeChat is a simple Node + React application.
 
 ## Frontend
 
-- React - 16.13.1
-- Material ui - 4.11.0
-- socket.io-client - 2.3.0
-- jsonwebtoken - 8.5.1
-- axios - 0.20.0
+- [React - v16.13.1](https://pt-br.reactjs.org/)
+- [Material ui - v4.11.0](http://material-ui.com/)
+- [socket.io-client - v2.3.0](https://socket.io/docs/client-api/)
+- [jsonwebtoken - v8.5.1](https://www.npmjs.com/package/jsonwebtoken)
+- [axios - v0.20.0](https://www.npmjs.com/package/axios)
 
 ## Usage
 
