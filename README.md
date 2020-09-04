@@ -1,6 +1,6 @@
 # Node-chat
 
-NodeChat is a simple Node + React application. 
+NodeChat is a simple Node + React chat application. 
 
 
 #### Example
